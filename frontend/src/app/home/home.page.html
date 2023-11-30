@@ -35,7 +35,7 @@
 <form [formGroup]="form" (ngSubmit)="submit()" (keyup.enter)="submit()">
 
   <ion-item class="text-box-item">
-    <ion-textarea formControlName="promt" auto-grow="true" placeholder="Whrite something..."></ion-textarea>
+    <ion-textarea formControlName="promt" auto-grow="true" placeholder="Write something..."></ion-textarea>
 
     <ion-buttons slot="end">
       <ion-button  color="tertiary" type="submit" [disabled]="form.invalid">
