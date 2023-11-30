@@ -1,0 +1,25 @@
+.info-text {
+  text-align: center;
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+}
+
+ion-icon {
+  color: rgb(228, 228, 228);
+  font-size: 2em;
+}
+
+
+.contact-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.contact-icons a {
+  margin: 0 10px;
+}
