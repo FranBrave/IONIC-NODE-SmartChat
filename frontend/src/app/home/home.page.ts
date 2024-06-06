@@ -18,7 +18,7 @@ export class HomePage {
   messages: IMessage[] = [];
 
   form = new FormGroup({
-    promt: new FormControl('', [ Validators.required, CustomValidators.noWhiteSpace ])
+    prompt: new FormControl('', [ Validators.required, CustomValidators.noWhiteSpace ])
   })
 
   loading: boolean = false;
@@ -29,23 +29,26 @@ export class HomePage {
   ) {}
 
   submit() {
-
     if(this.form.valid) {
+        let prompt = this.form.value.prompt as string;
 
-        let promt = this.form.value.promt as string;
+        if (!prompt) {
+            console.error('Prompt is empty or invalid');
+            return;
+        }
 
         // Mensaje del usuario
         let userMsg: IMessage = {
           sender: 'me',
-          content: promt
-        }
+          content: prompt
+        };
         this.messages.push(userMsg);
 
         // Mensaje del bot
         let botMsg: IMessage = {
           sender: 'bot',
           content: ''
-        }
+        };
         this.messages.push(botMsg);
 
         this.scrollToBottom();
@@ -54,9 +57,8 @@ export class HomePage {
 
         this.loading = true;
 
-        this.openAi.sendQuestion(promt).subscribe({
+        this.openAi.sendQuestion(prompt).subscribe({
           next: (res: any) => {
-
             this.loading = false;
             this.typeText(res.bot);
             this.form.enable();
@@ -67,7 +69,7 @@ export class HomePage {
           }
       });
     }
-  }
+}
 
   typeText(text: string) {
     if (!text) {

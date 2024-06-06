@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
 
-  baseUrl: 'https://smart-chat-qrw4.onrender.com/'
+  // baseUrl: 'https://smart-chat-qrw4.onrender.com/'
+  baseUrl: 'http://localhost:3000/'
 };
 
 /*

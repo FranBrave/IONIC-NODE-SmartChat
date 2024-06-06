@@ -9,8 +9,8 @@ export class OpenaiService {
 
   constructor(private http: HttpClient) { }
 
-  sendQuestion(promt: string) {
-    return this.http.post(environment.baseUrl, { promt });
+  sendQuestion(prompt: string) {
+    return this.http.post(environment.baseUrl, { prompt });
   }
 
 }
