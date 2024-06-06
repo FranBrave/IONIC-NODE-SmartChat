@@ -5,9 +5,7 @@ import OpenAI from "openai";
 
 dotenv.config();
 
-
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
 
 const app = express();
 app.use(cors());
@@ -21,10 +19,13 @@ app.get('/', async (req, res) => {
 
 app.post('/', async (req, res) => {
     try {
-        const promt = req.body.promt;
-        const response = await openai.completions.create({
-            model: "text-davinci-003",
-            prompt: promt,
+        const prompt = req.body.prompt;
+        const response = await openai.chat.completions.create({
+            model: "gpt-3.5-turbo",
+            messages: [
+                { role: "system", content: "You are a helpful assistant." },
+                { role: "user", content: prompt }
+            ],
             temperature: 0.7,
             max_tokens: 500,
             top_p: 1,
@@ -33,7 +34,7 @@ app.post('/', async (req, res) => {
         });
 
         res.status(200).send({
-            bot: response.choices[0].text
+            bot: response.choices[0].message.content
         });
 
     } catch (error) {
@@ -41,8 +42,5 @@ app.post('/', async (req, res) => {
         res.status(500).send({error});
     }
 });
-
-
-
 
 app.listen(3000, () => console.log('Server is running on port http://localhost:3000'));
