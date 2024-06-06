@@ -20,6 +20,7 @@ app.get('/', async (req, res) => {
 app.post('/', async (req, res) => {
     try {
         const prompt = req.body.prompt;
+<<<<<<< HEAD
 
         if (typeof prompt !== 'string' || !prompt.trim()) {
             res.status(400).send({
@@ -28,6 +29,8 @@ app.post('/', async (req, res) => {
             return;
         }
 
+=======
+>>>>>>> 08f3ee5bf080abf5ccb5096e05d12d64df7f4139
         const response = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages: [
